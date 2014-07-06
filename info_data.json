@@ -1,0 +1,60 @@
+{
+  "infos": [
+    {
+      "content": "Hello",
+      "category": 0
+    },
+    {
+      "content": "2",
+      "category": 1
+    },
+    {
+      "content": "the",
+      "category": 2
+    },
+    {
+      "content": "World",
+      "category": 0
+    }
+  ],
+  "images": [
+    {
+      "img": "test.gif",
+      "visible": true,
+      "local": true
+    },
+    {
+      "img": "test.jpeg",
+      "visible": true,
+      "local": true
+    },
+    {
+      "img": "http://upload.wikimedia.org/wikipedia/commons/d/db/Patern_test.jpg",
+      "visible": true,
+      "local": false
+    },
+    {
+      "img": "http://upload.wikimedia.org/wikipedia/commons/d/db/Patern_test.jpg",
+      "visible": false,
+      "local": false
+    }
+  ],
+  "availableCategories": [
+    {
+      "name": "Standard",
+      "color": "#000000"
+    },
+    {
+      "name": "Wichtig",
+      "color": "#ff0000"
+    },
+    {
+      "name": "Hinweis",
+      "color": "#001dff"
+    }
+  ],
+  "sAttributes": {
+    "transition": "slide",
+    "duration": 5
+  }
+}

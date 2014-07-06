@@ -1,0 +1,127 @@
+<meta charset="UTF-8">
+<html>
+<head>
+	<title>Editor</title>
+	<script type='text/javascript' src='knockout-3.1.0.js'></script>
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="editor_script.js"></script>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	<h1>Einstellungen - InfoMonitor</h1>
+	<div id="mainContainer" style="opacity: 0">
+		<div class="column">
+
+			<h2 title="Informationen hinzufügen, einstellen und löschen">Informationen</h2>
+		    <label for="showInfos">
+		        <input type='checkbox' id="showInfos" data-bind='checked: editInfos' />
+		        Informationen editieren
+		    </label>
+
+			<table data-bind='fadeVisible: editInfos'>
+			    <thead><tr>
+			        <th></th><th title="Dieser Text wird im InfoMonitor als separate Information angezeigt!">Inhalt</th><th title="Bestimmt die Farbe des Textes.">Kategorie</th><th></th>
+			    </tr></thead>
+			    <tbody data-bind="foreach: infos">
+			        <tr>
+			        	<td data-bind="text: ($index() + 1)"></td>
+			            <td><input placeholder="Information eingeben!" data-bind="value: content" class="text" /></td>
+			            <td><select data-bind="options: $root.availableCategories, value: category, optionsText: 'name', style: {color: category().color}"></select></td>
+			            <td><a href="#" data-bind="click: $root.removeInfo">Löschen</a></td>
+			        </tr>
+			    </tbody>
+			</table>
+		    <button data-bind="click: addInfo, fadeVisible: editInfos">Information hinzufügen</button>
+
+		    <div id="infoPreviewContainer" data-bind='fadeVisible: editInfos'>
+		    	<label>Vorschau</label>
+			    <marquee data-bind="foreach: infos" id="infoPreview">
+			    	<!-- ko if: $index() !== 0 -->
+			    	<div class="mText" data-bind="style: {fontSize: $root.sAttributes.fontSize}"> - </div>
+			    	<!-- /ko -->
+			    	<div class="mText" data-bind="text: content, style: {fontSize: $root.sAttributes.fontSize, 'font-family': $root.sAttributes.fontType, color: category().color}"></div>
+			    </marquee>
+		    </div>
+
+			<h3 data-bind='fadeVisible: editInfos' title="Kategorien hinzufügen, einstellen und löschen">Kategorien</h3>
+			<table data-bind='fadeVisible: editInfos'>
+			    <thead><tr>
+			        <th></th><th>Name</th><th>Farbe</th><th></th>
+			    </tr></thead>
+			    <tbody data-bind="foreach: availableCategories">
+			        <tr>
+			        	<td data-bind="text: ($index() + 1)"></td>
+			            <td><input placeholder="Name eingeben!" data-bind="value: name" class="text" /></td>
+			            <td>
+			            	<input for="colorpicker" data-bind="value: color" class="color" />
+			            	<input id="colorpicker" type="color" data-bind="value: color" /></td>
+			            <td><a href="#" data-bind="click: $root.removeCategory">Löschen</a></td>
+			        </tr>
+			    </tbody>
+			</table>
+		    <button data-bind="click: addCategory, fadeVisible: editInfos">Kategorie hinzufügen</button>
+		    <div id="slideAttributes" data-bind='fadeVisible: editInfos'>
+		    	<table>
+	    			<tr>
+					    <td>Schriftgröße</td><td><select data-bind="options: sizes, value: sAttributes.fontSize"></select></td>
+	    			</tr>
+	    			<tr>
+					    <td>Schriftart</td><td><select data-bind="options: fontTypes, value: sAttributes.fontType"></select></td>
+	    			</tr>
+		    	</table>
+		    </div>
+		</div>
+
+		<div class="column">
+			<h2 title="Bilder hinzufügen, einstellen und löschen">Bilder</h2>
+		    <label for="showInfos">
+		        <input type='checkbox' id="showImages" data-bind='checked: editImages' />
+		        Bilder editieren
+		    </label>
+
+			<table data-bind='fadeVisible: editImages'>
+			    <thead><tr>
+			        <th></th><th></th><th>Pfad</th><th title="Befindet sich auf das Bild auf dem Server?">Lokal</th><th title="Soll das Bild im InfoMonitor angezeigt werden?">Anzeigen</th><th></th>
+			    </tr></thead>
+			    <tbody data-bind="foreach: images">
+			        <tr>
+			        	<td data-bind="text: ($index() + 1)"></td>
+			        	<td><img class="thumb" data-bind="attr: {src: img}" /></td>
+			            <td><input placeholder="http://beispiel.de/bild.jpg" data-bind="value: img, disable: local" class="text" /></td>
+			            <td><input type="checkbox" data-bind="checked: local, disable: true" class="check" /></td>
+			            <td><input type="checkbox" data-bind="checked: visible" class="check" /></td>
+			            <td><button data-bind="click: $root.removeImage, visible: (!local), disable: local">Löschen</button></td>
+			        </tr>
+			    </tbody>
+			</table>
+		    <button data-bind="click: addImage, fadeVisible: editImages" title="Fügt ausschließlich externe Bilder hinzu!">Web-Image hinzufügen</button>
+
+		    <div id="slideAttributes" data-bind='fadeVisible: editImages'>
+		    	<table>
+	    			<tr>
+					    <td>Bildübergang</td><td><select data-bind="options: transitions, value: sAttributes.transition"></select></td>
+	    			</tr>
+	    			<tr>
+					    <td>Bilddauer</td><td><select data-bind="options: times, value: sAttributes.duration"></select></td>
+	    			</tr>
+		    	</table>
+		    </div>
+
+		</div>
+		<h3 title="Ergebnis unter 'info_data.json' abspeichern!">Exportieren</h3>
+	    <label for="showInfos">
+	        <input type='checkbox' id="exportData" data-bind='checked: exportData' />
+	        Daten speichern
+	    </label>
+	    <div data-bind='fadeVisible: exportData'>
+			<div id="exportContainer">
+				<button data-bind="click: save">Exportieren</button>
+			</div>
+			<div>
+				<textarea id="exportArea" data-bind="value: json"></textarea>
+			</div>
+	    </div>
+
+	</div>
+</body>
+</html>

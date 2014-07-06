@@ -1,0 +1,33 @@
+{
+  "infos": [],
+  "images": [
+    {
+      "img": "test.gif",
+      "visible": true,
+      "local": true
+    },
+    {
+      "img": "test.jpeg",
+      "visible": true,
+      "local": true
+    }
+  ],
+  "availableCategories": [
+    {
+      "name": "Standard",
+      "color": "#000000"
+    },
+    {
+      "name": "Wichtig",
+      "color": "#ff0000"
+    },
+    {
+      "name": "Hinweis",
+      "color": "#001dff"
+    }
+  ],
+  "sAttributes": {
+    "transition": "slide",
+    "duration": 5
+  }
+}

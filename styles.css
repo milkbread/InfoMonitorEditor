@@ -1,0 +1,50 @@
+input.color {
+	width: 60px;
+}
+#colorpicker {
+	width: 30px;
+	padding: 0px;
+	border: 0px;
+}
+input.text {
+	width: 160px;
+}
+input.url {
+	width: 200px;
+}
+#exportArea {
+	height: 15%;
+	width: 100%;
+}
+.column {
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+}
+h1, h2, h3, h4 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+h1 {
+	text-align: center;
+}
+.thumb {
+	height: 50px;
+	width: auto;
+}
+button {
+	margin-top: 14px;
+}
+#slideAttributes {
+	margin-top: 20px;
+}
+.mText {
+	display: inline;
+}
+#infoPreviewContainer {
+	margin-top: 14px;
+	width: 80%;
+}
+#infoPreview {
+	border: solid 1px;
+}
