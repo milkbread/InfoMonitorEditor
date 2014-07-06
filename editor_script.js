@@ -23,7 +23,7 @@ function showDownload(jData) {
 	if($("#download").toArray().length!==0) {
 		$("#download").remove();
 	}
-	$('<a id="download" href="data:' + data + '" download="info_data.json">info_data.json herunterladen</a>').appendTo('#exportContainer');
+	$('<a id="download" href="data:' + data + '" download="einstellungen.json">einstellungen.json herunterladen</a>').appendTo('#exportContainer');
 }
 
 function getLocalImages( data ) {
@@ -189,7 +189,7 @@ var imageFormats = ["jpg", "jpeg", "gif", "bmp"],
 	viewModel;
 
 $.get( "/", function(data) {
-	$.getJSON( "info_data.json", function( currentData ) {
+	$.getJSON( "einstellungen.json", function( currentData ) {
 		var localImages = getLocalImages(data);
 		renderEditor(localImages, currentData);
 	});
